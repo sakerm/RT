@@ -6,47 +6,37 @@
 #    By: lvasseur <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/14 17:09:20 by lvasseur          #+#    #+#              #
-#    Updated: 2017/03/13 17:14:52 by lvasseur         ###   ########.fr        #
+#    Updated: 2017/05/03 13:31:18 by lomeress         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY: make all clean fclean re c f r g
-
 NAME = RT
+SRC = src/main.c \
+	  src/vector.c \
+	  src/create_lights.c \
+	  src/create_objects.c \
+	  src/intersects.c \
+	  src/normals.c \
+	  src/texture.c \
+	  src/color.c \
+	  src/matrice.c
+OBJ = $(SRC:.c=.o)
+	FLAGS = #-Wall -Wextra -Werror
 
-LIB = -L libft/ -lft
+all: $(NAME)
 
-LIBFT = libft/libft.a
+%.o: %.c
+	gcc -c $^ -o $@ -I ./Users/lomeress/.brew/opt/sdl2/include/SDL2 -lSDL2 -lm
 
-C_DIR = src/
+$(NAME): $(OBJ)
+	gcc $(FLAGS) -o $(NAME) $(OBJ) -L /Users/lomeress/.brew/opt/sdl2/lib libft/libft.a -lm -lSDL2
 
-SRCS = main.c raytracing.c
-
-SRC = $(addprefix $(C_DIR), $(SRCS))
-
-OBJ = $(SRCS:.c=.o)
-
-INC = -I includes/ -I libft/
-
-all : $(NAME)
-
-$(NAME): $(OBJ) $(LIBFT)
-	gcc -Wall -Wextra -Werror $^ -o $@ $(LIB) -lmlx -framework OpenGL -framework AppKit
-
-$(LIBFT):
-	make -C libft/
-
-$(OBJ) : $(SRC)
-	gcc -c -Wall -Wextra -Werror $^ $(INC)
-
-c clean :
-	make clean -C libft/
+c clean:
 	rm -f $(OBJ)
 
-f fclean : clean
-	make fclean -C libft/
+f fclean: clean
 	rm -f $(NAME)
 
-r re : fclean all
+r re: fclean all
 
-g good: all clean
+g good: $(NAME) clean
