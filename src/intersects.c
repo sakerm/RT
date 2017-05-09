@@ -6,7 +6,7 @@
 /*   By: rmenegau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 18:13:15 by rmenegau          #+#    #+#             */
-/*   Updated: 2017/05/04 18:03:38 by lomeress         ###   ########.fr       */
+/*   Updated: 2017/05/09 15:33:00 by lomeress         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,13 +106,16 @@ int	cone_intersect(union u_shape shape, t_ray ray, double *t)
 	t_cone		co;
 	double		t1;
 	double		t2;
-	
+	double		k;
+
 	co = shape.cone;
-	a = ray.d.x * ray.d.x - ray.d.y * ray.d.y + ray.d.z * ray.d.z;
+	k = co.aperture / 180 * M_PI;
+	k = k * k;
+	a = ray.d.x * ray.d.x - ray.d.y * ray.d.y * k + ray.d.z * ray.d.z;
 	b = (2 * (ray.d.x * (ray.o.x - co.d.x))) - (2 *
-		(ray.d.y * (ray.o.y - co.d.y))) + (2 * (ray.d.z * (ray.o.z - co.d.z)));
+		(ray.d.y * (ray.o.y - co.d.y)) * k) + (2 * (ray.d.z * (ray.o.z - co.d.z)));
 	c = (ray.o.x - co.d.x) * (ray.o.x - co.d.x) + (ray.o.z - co.d.z) *
-		(ray.o.z - co.d.z) - (ray.o.y - co.d.y) * (ray.o.y - co.d.y);
+		(ray.o.z - co.d.z) - (ray.o.y - co.d.y) * (ray.o.y - co.d.y) * k;
 	delta = b * b - 4 * a * c;
 	if (delta > 0)
 	{
