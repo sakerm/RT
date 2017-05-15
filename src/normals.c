@@ -6,7 +6,7 @@
 /*   By: rmenegau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 18:29:36 by rmenegau          #+#    #+#             */
-/*   Updated: 2017/05/04 14:06:45 by lomeress         ###   ########.fr       */
+/*   Updated: 2017/05/15 15:35:19 by lomeress         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_vec   cone_normal(union u_shape shape, t_vec p)
 
     r = shape.cone.r;
 	n.x = p.x - shape.cone.d.x;
-	n.y = p.y - shape.cone.d.y;
+	n.y = /*p.y - shape.cone.d.y  -r*/r;
 	n.z = p.z - shape.cone.d.z;
 	return (n);
 }

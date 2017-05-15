@@ -6,7 +6,7 @@
 /*   By: lvasseur <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 12:35:31 by lvasseur          #+#    #+#             */
-/*   Updated: 2017/05/09 15:36:42 by lomeress         ###   ########.fr       */
+/*   Updated: 2017/05/15 15:16:14 by lomeress         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,8 +210,8 @@ t_env	init(void)
 	e.scene.objects[6] = create_plane(create_vec(4, 0, 0), create_vec(-1, 0, 0), create_color(1.0, 1.0, 1.0), 0.5, 0);
 	e.scene.objects[7] = create_plane(create_vec(-4, 0, 0), create_vec(1, 0, 0), create_color(1.0, 1.0, 1.0), 0.5, 0);
 	e.scene.objects[8] = create_plane(create_vec(0, 0, -1), create_vec(0, 0, 1), create_color(1.0, 1.0, 1.0), 0, 0);
-	e.scene.objects[9] = create_cylinder(create_vec(-2, 0, 6), 0.5, create_color(0, 0, 1.0), 0.5, 2);
-	e.scene.objects[10] = create_cone(create_vec(3, 1, 6), 0.5, create_color(1.0, 1.0, 1.0), 0.5, 0, 30);
+	e.scene.objects[9] = create_cylinder(create_vec(-2, 0, 6), 0.2, create_color(0, 0, 1.0), 0.5, 3);
+	e.scene.objects[10] = create_cone(create_vec(2, -1, 8), 0.5, create_color(1.0, 1.0, 1.0), 0.5, 0, 40);
 	e.scene.objects[11] = create_sphere(0.5, 2, 4.0, 0.75, create_color(1.0, 1.0, 1.0), 0.5, 4);
 	e.scene.objects[12].type = 0;
 

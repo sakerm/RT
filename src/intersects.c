@@ -6,7 +6,7 @@
 /*   By: rmenegau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 18:13:15 by rmenegau          #+#    #+#             */
-/*   Updated: 2017/05/09 15:33:00 by lomeress         ###   ########.fr       */
+/*   Updated: 2017/05/15 13:55:17 by lomeress         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	cylinder_intersect(union u_shape shape, t_ray ray, double *t)
 	double		t2;
 
 	cyl = shape.cylinder;
-	a = ray.d.x * ray.d.x + ray.d.z * ray.d.z;
+	a = (ray.d.x * ray.d.x + ray.d.z * ray.d.z);
 	b = (2 * (ray.d.x * (ray.o.x - cyl.p.x))) + (2 *
 		(ray.d.z * (ray.o.z - cyl.p.z)));
 	c = (ray.o.x - cyl.p.x) * (ray.o.x - cyl.p.x) + (ray.o.z - cyl.p.z) *
@@ -107,6 +107,7 @@ int	cone_intersect(union u_shape shape, t_ray ray, double *t)
 	double		t1;
 	double		t2;
 	double		k;
+	t_vec		ro;
 
 	co = shape.cone;
 	k = co.aperture / 180 * M_PI;
